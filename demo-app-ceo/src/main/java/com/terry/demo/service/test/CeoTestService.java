@@ -83,40 +83,6 @@ public class CeoTestService {
     }
 
     /**
-     * 등록(파일)
-     * @param testRequest
-     * @return
-     */
-    public ResponseEntity<?> ceoTestFileSave(TestRequest testRequest) throws IOException {
-
-        TestResponse.TestDtoResponse testDtoResponse = new TestResponse.TestDtoResponse();
-
-        KpTest kpTest = testRequest.getKpTest();
-
-        KpTest kpTestSave = testService.testSave(kpTest);
-        TestDto testDto = new TestDto(kpTestSave);
-        testDtoResponse.setTest(testDto);
-
-        /*
-        if (!ObjectUtils.isEmpty(kpTest.getMultipartFile())) {
-
-            String fileName = kpTest.getMultipartFile().getOriginalFilename();
-            // 초까지 같을 수가 있기 때문에 i를 통한 index 값 추가
-            String s3FileName = "document-" + "1" + "-" + "0" + "-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
-            String fileUrl = "document/" + "1" + "/";
-            String s3FileKey = fileUrl + s3FileName;
-            // s3파일 업로드
-            AwsS3BucketOrObject.uploadObjectFileToS3(s3FileKey, kpTest.getMultipartFile());
-
-        }
-         */
-
-        return new ResponseEntity<>(new CommonResponseEntity<>(CommonResponseEntityType.OK, testDtoResponse)
-                , CommonResponseEntityType.OK.getHttpStatus());
-
-    }
-
-    /**
      * 수정
      * @param testUpdateRequest
      * @return
